@@ -1,0 +1,252 @@
+*{
+margin: 0;
+padding:0;}
+
+body{
+font-family: 'Urbanist', sans-serif;}
+
+section{
+    text-align:center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+    position:absolute;
+    top:-10px;
+    margin:10px 2.5px;
+    height: 100%;
+    font-size: 20px;
+    box-sizing:border-box;
+}
+
+header{
+position: absolute;
+top:5px;
+}
+
+.name{
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 700;
+    font-size:25px;
+    display:inline-block;
+    position:fixed;
+    z-index: 4;
+    top: 20px;
+    background-color:#ff717199;
+    backdrop-filter:blur(4px);
+    color:#000000;
+    padding: 5px 40px 5px 20px;
+    left: 0px;
+    border-left: 2px solid #ffffff;
+    height:24px;
+    }
+
+.name span{
+position:relative;
+top:-6px;
+color:#082032;
+font-family: 'Righteous', cursive;
+padding:2px 5px;}
+.side-nav{
+position:fixed;
+top:20px;
+width:auto;
+text-align: end;
+right:15px;
+z-index: 4;
+}
+
+.name .lms{
+font-family: 'Ubuntu', sans-serif;
+color:Black;
+}
+
+ .side-nav button, .form form button{
+border-radius: 4px;
+height: 2rem;
+padding: 2px 5px;
+background-color:black;
+color:white;
+cursor: pointer;
+border: none;
+font-weight:700;
+font-family: 'Urbanist', sans-serif;
+letter-spacing:1.2px;
+}
+
+.side-nav button{
+color:white;
+background-color:#F05454;
+}
+
+.form form button{
+width:54%;
+margin:25px 0;}
+
+.form form button:hover{
+color:#ff7171;
+}
+
+#photo-section{
+color: white;
+width: 60%;
+left: -30px;
+background-image: url("https://images.unsplash.com/photo-1501503069356-3c6b82a17d89?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80");
+background-size:cover;
+}
+
+#photo-section p{
+    width: 50%;
+    margin: 20px auto;
+    height: auto;
+    position: relative;
+    border-radius:5px;
+    font-size: xxx-large;
+    text-align: left;
+    background-color: #00000090;
+    padding: 15px 20px 20px;
+}
+
+input, .sel{
+background-color: inherit;
+border:none;
+color:#082032;
+font-weight:bold;
+padding: 5px 10px;}
+
+input:focus{
+outline:none;
+}
+
+.sel{
+color:#FEFBF3;
+font-size:15px;
+background-color: black;
+border-radius:2px;
+margin:5px auto 15px;}
+
+.myfa{
+border-radius: 2px;
+border-bottom: 2px solid black;
+padding: 2px 10px;
+}
+
+#login-section{
+background-size:contain;
+background-color:white;
+filter: none;
+width: 42%;
+right: -2px;
+padding:2.5px;
+}
+
+.form h1{
+    transform: translate(10px,100px);}
+
+@media screen and (max-width: 800px) {
+    section{
+        height: auto;
+        width: 95%;
+        margin: 30px auto;
+        font-size: 30px;
+        position:relative;
+        display:block;
+    }
+
+    .name, .side-nav{
+    top:15px;}
+    header{
+    position:fixed;
+    top:-1px;
+    left:-1px;
+    width:100%;
+    height:60px;
+    margin:0;
+    padding:0;
+    z-index:2;
+    }
+
+    input{
+    margin:5px;
+    width:60%;}
+
+    .radio{
+    width:auto;}
+
+    .sel{
+    margin:15px auto;
+}
+    .form form button{
+        margin: 10px auto;
+        height: auto;
+        padding: 5px;
+        font-size: xx-small;}
+
+    #photo-section{
+    width:100%;
+    left:auto;
+    top:-2rem;
+    height:21rem;
+    }
+
+    #photo-section p{
+        transform: translate(0px, 100px);
+        width: 80%;
+        font-size: 30px;
+    }
+
+    #login-section{
+    width:100%;
+    margin:0 auto;
+    top:-4rem;
+    padding-top:5px;
+    background-size:contain;
+    }
+
+    html{
+    background-color: white;
+    }
+
+    .form{
+    font-size: 1.2rem;}
+
+
+    .form h1{
+    transform:none;
+    }
+    .form form{
+    transform:none;
+    line-height:1.5;}
+}
+
+@media screen and (max-width: 400px) {
+.form form label{
+display: block;
+font-size: initial;
+}}
+
+
+.form{
+    background: url('../img/bg3.jpg') no-repeat ;
+    padding: 10px;
+    text-align: center;
+    align-content: center;
+    width: 75%;
+    height: 65%;
+    margin: 28px auto;
+    background-color: #ffffff50;
+    border-radius: 5px;
+}
+
+hr{
+border-top: 2px solid #ff7171;
+width: 70%;
+}
+
+form{
+transform: translate(10px,120px);
+line-height: 2;
+}
+
+

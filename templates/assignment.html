@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/assignment.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist&display=swap" rel="stylesheet">
+    <title>Assignments</title>
+    <script src="https://kit.fontawesome.com/00e297be53.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+
+        <div class="title">ASSIGNMENTS</div>
+
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Assignment</th>
+                        <th>Last Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td>{{assignment.id}}</td>
+                            <td>{{assignment.subject.sub_name}}</td>
+                            <td>{{assignment.date}}</td>
+                            <td>Due</td>
+                        <tr>
+                            <td colspan="4">
+                                {%if get_flashed_messages() != []%}
+                                {% with messages = get_flashed_messages()%}
+                                <h5 style="color:red; font-family: 'Urbanist', sans-serif;"><i class="fas fa-exclamation-triangle"></i> {{messages[0]}}</h5>
+                                {% endwith %}
+                                {% endif %}
+
+                                <form method="POST" enctype = "multipart/form-data" action={{url_for('assignment', assign_id=request.args['assign_id'])}}>
+                                <input type="file" required name = "file"><br>
+                                <input type = "submit"/>
+                                </form>
+                            </td>
+                        </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>

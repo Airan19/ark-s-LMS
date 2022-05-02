@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/code.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <title>Select Section</title>
+    <style>
+
+        .overview-boxes{
+        background: #00000010 fixed center center;
+        background-size: cover;
+        }
+        body{
+        background: url('https://static.typingclub.com/m/website/hero.svg') no-repeat;
+        background-position: right;
+        background-color: #AAAAAA;
+        }
+        .home-content{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: flex-start;
+        align-items: center;
+        }
+
+        .home-content .overview-boxes{
+        flex-direction:column;
+        box-shadow: -1px 0px 2px #2B3749;
+        width: calc(85%/2 - 15px);
+        margin: 20px 10px;
+        padding: 20px 2px;
+        border-radius: 10px;
+        }
+
+        .overview-boxes .box{
+        margin:10px;
+        width: calc(70% - 15px);
+        border-bottom: 5px solid #2B3749;
+        }
+
+        .box-topic label, .box-topic input{
+        margin:5px;
+        padding:5px;
+        }
+
+        .box-topic label{
+        font-size:25px;
+        }
+
+        button{
+        height: 40px;
+        width: 120px;
+        padding: 5px 10px;
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 16px;
+        background-color: #2B3749;
+        color: whitesmoke;
+        border:none;
+        border-radius: 25px;}
+
+    </style>
+</head>
+<body>
+<form action={{url_for('teacher_select', user_id=current_user.user_id)}} method="post">
+    <div class="home-content">
+      <div class="overview-boxes">
+          <div class="box" style="background:linear-gradient(135deg, white,#ffffff); border-left: 3px dashed #66B0FF;">
+          <div class="right-side" >
+            <div class="box-topic" >Welcome !</div>
+            <div class="number">{{user.username.capitalize()}}</div>
+            <div class="indicator" >
+                <ol>
+                 {% for subject in subjects %}
+          <li class="title" >{{subject}}</li>
+            {% endfor %}
+                </ol>
+            </div>
+          </div>
+          <i class='bx bxs-note cart'></i>
+        </div>
+        <div class="box" style="background:linear-gradient(135deg, white,#ffffff); border-left: 3px dashed #FFC233;">
+          <div class="right-side" >
+            <div class="box-topic" >Reference Notes - {{notes_count}}</div>
+            <div class="box-topic">Assignments - {{assign_count}}</div>
+           </div>
+          <i class='bx bxs-book cart three' ></i>
+        </div>
+        <div class="box" style="background:linear-gradient(135deg, white,#ffffff); border-left: 3px dashed #2BD47D">
+          <div class="right-side">
+            <div class="box-topic">Sem :</div>
+            <div class="number">{{user.t_class}}
+            <div class="box-topic">Section :</div>
+            <div class="box-topic">
+                {% for section in sec %}
+             <label><input required type="radio" name="activity" value={{section}}>{{section}}</label>
+            {% endfor %}
+            </div>
+            </div>
+              </div>
+              <i class='bx bxl-slack cart two'></i>
+<!--          <i class='bx bx-line-chart cart two'></i>-->
+        </div>
+          <button type="submit">Done</button>
+        </div>
+      </div>
+        </form>
+
+</body>
+</html>

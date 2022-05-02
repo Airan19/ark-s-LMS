@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link href="../static/css/edit_profile.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <div id='profile'>
+            <img  src='https://firstsiteguide.com/wp-content/uploads/2020/11/what-is-gravatar-1-1-700x313-1-1.jpg'>
+        </div>
+        <div class="title">Edit Profile</div>
+        <form action={{url_for('edit_profile', current_sec=current_sec)}}  method="post">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">User ID</span>
+                    <input type="text" name='user_id' value={{user.user_id}} readonly>
+                </div>
+                <div class="input-box">
+                    <span class="details">Full Name</span>
+                    <input type="text" name='name' value={{user.username}} readonly>
+                </div>
+                <div class="input-box">
+                    {% if role == 'student': %}
+                    <span class="details">Section</span>
+                    <input type="text" name="section" value={{user.s_section}} readonly>
+                    {% else: %}
+                    <span class="details">Subjects</span><br>
+                    {% for subject in subjects:%}
+                    <input type="text" style="display:inline-block; width:80px;" value= {{subject}} readonly>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+                {% if role=='teacher': %}
+                <div class="input-box">
+                    <span class="details">Section</span><br>
+                    {% for sec in all_sec:%}
+                    <input type="text" style="display:inline-block; width:40px;" value= {{sec}} readonly>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="user-details">
+                    <div class="input-box">
+                        {% with messages = get_flashed_messages() %}
+                        <h3 style="color:red;">{{messages[0]}}</h3>
+                        {% endwith %}
+
+                        <span class="details">Email</span>
+                        <input type="email" name="email" placeholder="Enter your email" value='{{profile.email}}' required>
+                    </div>
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details">Contact No.</span>
+                            <input type="number" name="contact" step="1" minlength=10 placeholder="Enter your contact number" value='{{profile.contact}}' maxlength=10 required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Semester</span>
+                            <input type="text" name="sem" value="5" readonly>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Address</span>
+                            <input type="text" name="address" placeholder="Enter your address" value='{{profile.address}}' required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Pincode</span>
+                            <input type="number" name="pincode" step="1" placeholder="Enter your pincode" value={{profile.pin_code}} required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">City</span>
+                            <input type="text" name='city' placeholder="Enter your city" value='{{profile.city}}' required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">State</span>
+                            <input type="text" name="state" placeholder="Enter your State" value='{{profile.state}}' required>
+                        </div>
+           </div>
+           <div class ="button">
+               <button type="submit">Save Changes</button>
+           </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

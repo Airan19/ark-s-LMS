@@ -1,0 +1,65 @@
+Aryan Dev Chourasia
+Undergraduate Student
+
+Raisen
+6261938899
+
+I am an undergraduate student currently pursuing Bachelor's degree in Computer Science at Lakshmi Narain College of Technology and Science.
+For coding pracitices I have interest in Python and on my way of becoming a Python Developer.
+
+PERSONAL INFORMATION
+  Address: 13,Ashok Nagar ,Raisen,M.P, Raisen, 464551
+  Date of birth: 19/06/2001 
+  Nationality: 
+  Driving License: 
+  Hobbies: 
+
+SOCIAL PROFILES
+  * LinkedIn: https://www.linkedin.com/in/aryan-dev-chourasia-720158211/
+  * Blog Website: https://arkblogs.herokuapp.com/
+
+SKILLS
+  ★★★☆☆ Python
+  ★★★☆☆ jQuery
+  ★★★☆☆ HTML5
+  ★★☆☆☆ JavaScript
+  ★★★☆☆ Flask
+  ★★☆☆☆ SQL
+  ★★☆☆☆ Data Structures
+
+EDUCATION
+  * August 2019 – Present
+    Lakshmi Narain College of Technology & Science, Bhopal Bachelor of Technology
+
+    Graduating in June 2023
+  * 2019
+    Bright Career Public School, Raisen XIIth
+
+    81.2% 
+English Medium
+MP Board
+  * May 2017
+    St. Francis Convent Hr. Sec. School, Raisen Xth
+
+    91.2%
+English Medium
+CBSE
+
+INTERNSHIPS
+  * December 2021 – January 2022
+    Python Intern at Richy Games Private Limited, New Delhi
+
+    Worked as an Python Intern I have developed a program which fulfills the requirement to send mail in bulk automatically, you just need to compose a mail. The program is now used for digital marketing purpose.
+
+COURSES
+  * 
+    Introduction to Python, Coursera
+  * 
+    Object Oriented Programming in Python Basics, Coursera
+  * 
+    SQL Basics, Coursera
+  * 
+    The Complete Web Development Bootcamp, Udemy
+  * 
+    , 
+

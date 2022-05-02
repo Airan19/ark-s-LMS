@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/popup.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="popup" id="popup-1">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="close-btn" onclick="togglePopup()">&times;</div>
+<h2>Add Notes</h2>
+<form action={{url_for('popup')}} method="post">
+  <label for="sname">Subject name:</label><br>
+  <input type="text" id="sname" name="sname" ><br>
+  <label for="aname">Add Notes:</label><br>
+  <input type="text" id="aname" name="aname" ><br><br>
+   <input type="submit" value="Submit">
+    <button type="submit" class="sbutton">Submit</button>
+<!--      <button  type="submit" onclick="history.back()" name='button' class="title" value={{request.form['button']}}>Submit</button>-->
+</form>
+</div>
+</div>
+<button onclick="togglePopup()">Refernce notes</button>
+<script>
+    function togglePopup(){
+        document.getElementById("popup-1").classList.toggle("active");
+    }
+</script>
+</body>
+</html>

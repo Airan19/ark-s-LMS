@@ -1,0 +1,28 @@
+{% extends 'form.html' %}
+{% block title %} Page | Log In {% endblock %}
+{% block content %}
+<section id="login-section">
+    <div class="form">
+        <h1>Login as</h1>
+        <form action="{{url_for('login')}}" method=post>
+        {%if get_flashed_messages() != []%}
+        {% with messages = get_flashed_messages()%}
+        <h4 style="color:red;"><i class="fas fa-exclamation-triangle"></i> {{messages[0]}}</h4>
+        {% endwith %}
+        {% endif %}
+
+              <select class="sel" name="user" id="user" required>
+                <option value="" disabled selected hidden>Select User</option>
+                <option class="opt" value="teacher">Teacher</option>
+                <option class="opt" value="student">Student</option>
+                <option class="opt" value="admin">Admin</option>
+              </select>
+            <br>
+            <i class="fas fa-envelope myfa"><input type="text" name="user_id"  placeholder="User Id" maxlength="40" required></i><br>
+            <i class="fas fa-lock myfa"><input type="password" name="password" placeholder="Password" maxlength="20" required></i><br>
+
+            <button type="submit">LOG IN</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

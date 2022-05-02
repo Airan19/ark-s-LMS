@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="UTF-8">
+     <meta http-equiv="refresh" content="50" />
+    <title>Dashboard | Student</title>
+    <!-- Step 1 - Include the fusioncharts core library -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <!-- Step 2 - Include the fusion theme -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/code.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <link rel="stylesheet" href="../static/css/popup.css">
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/00e297be53.js" crossorigin="anonymous"></script>
+  <style>
+    .link_table, td, th {
+    border: 1px solid #ddd;
+    text-align: center;
+    }
+
+    .link_table, table {
+      margin-top: 10px;
+      border-collapse: collapse;
+      width: auto;
+    }
+
+    th, td {
+      padding: 5px;
+    }
+
+    td:hover{
+      background-color: black;
+      color:white;
+    }
+
+    .link_td, .link_td a{
+      color:#2FDD92;
+      background-color:black;
+      padding:2px 15px;
+      border-radius:2px;
+    }
+
+    .link_td a:hover{
+      color: black;
+      background-color:#ffffff90;
+    }
+  </style>
+  </head>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <span style="position:relative; top:10px; left:-5px;"><a href="{{url_for('login', login='False')}}">
+        <img style='height:70px;' src="../static/img/logo.png"></a></span>
+
+      <span id="ark"><a href="{{url_for('login', login='False')}}">ark's
+        <text style="font-family: 'Urbanist', sans-serif; color:whitesmoke;">LMS</text></a></span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a href="#">
+            <i class='bx bxs-home' ></i>
+            <span class="links_name">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href={{url_for('edit_profile')}}>
+            <i class='bx bx-user' ></i>
+            <span class="links_name">Edit Profile</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('about_us')}}">
+            <i class='bx bxs-contact'></i>
+            <span class="links_name">About Us</span>
+          </a>
+        </li>
+        <li class="log_out">
+          <a href="{{ url_for('logout')}}">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+
+  <section class="home-section">
+
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Dashboard</span>
+      </div>
+
+      <div class="profile-details">
+        <!--<img src="images/profile.jpg" alt="">-->
+        <span class="admin_name"><a href={{url_for('edit_profile')}}>{{user.username}}</a></span>
+        </div>
+    </nav>
+
+    <div class="home-content">
+      <div class="overview-boxes">
+        <div class="box"><a onclick="togglePopup()">
+          <div class="right-side">
+            <div class="box-topic">Reference Notes</div>
+            <div class="number">{{notes_count}}</div>
+            <div class="indicator" style="visibility:hidden;">
+              <i class='bx bx-up-arrow-alt'></i>
+              <span class="text">Up from yesterday</span>
+            </div>
+          </div></a>
+          <i class='bx bxs-note cart'></i>
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Attendance</div>
+            <div class="number">{{attendance}}%</div>
+            <div class="indicator">
+              <i class='bx bx-up-arrow-alt'></i>
+              <span class="text">From yesterday</span>
+            </div>
+          </div>
+          <i class='bx bx-line-chart cart two'></i>
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Assignment</div>
+            <div class="number">{{assign_count}}</div>
+            <div class="indicator">
+              <i class='bx bx-up-arrow-alt'></i>
+              <span class="text">Uploaded yesterday</span>
+            </div>
+          </div>
+          <i class='bx bxs-book cart three' ></i>
+        </div>
+        <div class="box">
+          <div class="right-side">
+            {% if show_link!= []: %}
+            <div class="box-topic">{{show_link.subject.sub_id}}</div>
+            <div class="number">{{show_link.subject.sub_name}}</div>
+            <div class="indicator">
+              <span ><a href={{show_link.meeting_link}}>Join class</a></span>
+            </div>
+            {% else: %}
+            <div class="box-topic">No </div>
+            <div class="number" >Class</div>
+            <div class="indicator" >
+              <span >Scheduled for now</span>
+            </div>
+            {% endif %}
+          </div>
+            <i class='bx bx-link cart four'></i>
+        </div>
+      </div>
+      <div class="stu-boxes" style="margin:30px auto;">
+        <div class="recent-stu box" style="width:100%;">
+          <div class="title">UPDATE:</div>
+          {% for update in updates: %}
+          <div class="stu-details">{{loop.index}}. {{update.update.capitalize()}} - {{update.teacher.username}}</div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="stu-boxes" >
+        <div class="recent-stu box" >
+          <div class="title">Assignments </div>
+          <div class="stu-details" style="display:block;">
+            <table style="text-align:center; font-size: 16px;">
+              <tr>
+            <th class="topic">Assign. No.</th>
+            <th class="topic">Submission Date</th>
+            <th class="topic">Subject</th>
+            <th class="topic">Status</th>
+            <th class="topic"></th>
+                </tr>
+              {% for assign in assignments:%}
+            <tr class="details" >
+              <td style="padding: 12px 10px;"><a  href="#">{{assign.id}}</a></td>
+              <td style="padding: 12px 10px;">{{assign.date}}</td>
+            <td style="padding: 12px 10px;">{{assign.subject.sub_name}}</td>
+            <td style="padding: 12px 10px;">
+              {% if assign in user.assignments: %}
+              <a style="color:#009DAE;" href={{url_for('preview', assign_id=assign.id)}}> Submitted</a>
+              {% else: %}
+              {% if assign.date >= today: %}
+              <a style="color:orange;" href={{url_for('assignment', assign_id = assign.id)}}>Due</a>
+              {% else: %}
+              <text style="color:red">Not Submitted</text>
+              {% endif %}
+              {% endif %}
+            </td>
+              <td style="padding: 12px 10px;">
+                {% if assign in user.assignments: %}
+                <a href={{url_for('delete', id=assign.id, table="student_assignments")}}><i class="fas fa-trash" style="color:grey; padding: 5px 15px;"></i></a>
+                {% endif %}
+              </td>
+          </tr>
+
+            {% endfor%}
+          </table>
+        </div>
+        </div>
+
+
+
+        <div class="top-stu box" style="overflow:hidden;">
+<!--          <div class="title">ATTENDENCE GRAPH</div>-->
+        <div id="chart-container" style='height:400px;'></div>
+
+
+          <script>
+            const dataSource = {
+            chart: {
+              caption: "Attendance Status",
+              subcaption: "2021",
+              xaxisname: "Subjects",
+              yaxisname: "Total Lectures",
+              formatnumberscale: "1",
+              theme: "fusion",
+              drawcrossline: "5"
+            },
+            categories: [
+              {
+                category: [
+                  {
+                    label: "TOC"
+                  },
+                  {
+                    label: "DBMS"
+                  },
+                  {
+                    label: "Cyber Security"
+                  },
+                  {
+                    label: "IWT"
+                  }
+                ]
+              }
+            ],
+            dataset: [
+              {
+                seriesname: "Total Lectures",
+                data: [
+                  {
+                    value:{{sub_total[0].total_count}}
+                  },
+                  {
+                    value: {{sub_total[1].total_count}}
+                  },
+                  {
+                    value: {{sub_total[2].total_count}}
+                  },
+                  {
+                    value: {{sub_total[3].total_count}}
+                  }
+                ]
+              },
+              {
+                seriesname: "Total Attended",
+                data: [
+                  {
+                    value: {{graph[0].total_present}}
+                  },
+                  {
+                    value: {{graph[1].total_present}}
+                  },
+                  {
+                    value: {{graph[2].total_present}}
+                  },
+                  {
+                    value: {{graph[3].total_present}}
+                  }
+                ]
+              }
+            ]
+          };
+
+          FusionCharts.ready(function() {
+            var myChart = new FusionCharts({
+              type: "mscolumn2d",
+              renderAt: "chart-container",
+              width: "100%",
+              height: "100%",
+              dataFormat: "json",
+              dataSource
+            }).render();
+          });
+
+          </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<div class="popup" id="popup-1" style="font-size:10px;">
+    <div class="overlay" style="background:red;"></div>
+  <div class="myoverlay" id="mypop">
+    <div class="content">
+        <div class="close-btn" onclick="togglePopup()">&times;</div>
+<h2>Reference Notes link</h2>
+<table class='link_table' >
+  <tr>
+    <th>S.No.</th>
+    <th>Link</th>
+    <th>Subject</th>
+    <th>Given By</th>
+  </tr>
+{% for note in notes %}
+  <tr style="margin: 20px auto; padding: 5px;">
+      <td>{{note.id}}</td>
+      <td class="link_td"><a style="text-decoration:none;"  href={{note.notes_link}}>{{note.notes_link}}</a></td>
+      <td>{{note.subject.sub_name}}</td>
+      <td>{{note.teacher.username}}</td>
+  </tr>
+{% endfor%}
+</table>
+</div>
+</div>
+</div>
+
+
+<script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+</script>
+<script>
+  function togglePopup(){
+          var myClock = document.getElementById('mypop');
+    var displaySetting = myClock.style.display;
+    if (displaySetting == 'block') {
+      myClock.style.display = 'none';
+    }
+    else {
+      myClock.style.display = 'block';}
+
+      document.getElementById("popup-1").classList.toggle("active");
+  }
+</script>
+</body>
+</html>
+

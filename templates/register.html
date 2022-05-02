@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Page | Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        .con_con{
+            background-color:#ff7171;
+            margin: 30px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            height: 96%;
+            text-align: center;
+        }
+
+        html,body {
+        height: 95%;
+        }
+
+        .cont, .con{
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        align-content: center;
+        align-items: center;
+        justify-content: space-evenly;
+        height:100%;
+        margin: 30px 50px;
+        }
+
+        .con{
+        text-align:center;
+        margin: 30px 10px;
+        border: 2px solid #ff7171;
+        border-radius: 5px;
+        height:30%;
+        }
+
+        .table {
+        border-spacing: 15px;
+        text-align: start;
+        }
+
+        #logout{
+        position: fixed;
+        top:20px;
+        right: 15px;
+        z-index: 5;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="con_con">-->
+<!--    <div class="button_con">-->
+<!--        <button  type="button" class="btn btn-dark">Register Teacher</button>-->
+<!--        <button  type="button" class="btn btn-dark" >Register Student</button>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="container" style="height:100%;">-->
+<!--    <div class="row" style="height:100%;">-->
+<!--        <div class="col-sm-12 col-lg-6 con">-->
+<!--            <button  type="button" class="btn btn-dark">Register Teacher</button>-->
+<!--        </div>-->
+<!--        <div class="col-sm-12 col-lg-6 con">-->
+<!--            <button  type="button" class="btn btn-dark" >Register Student</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<button class="btn btn-dark" id="logout"><a style="text-decoration: none; color:#ff7171;" href="{{url_for('logout')}}">Log Out</a></button><br>
+<div class="cont">
+
+        <div class="con col-sm-12 col-lg-4" id="teacher">
+            <button  type="button" class="btn btn-dark" onclick="showTeacher()" id="teacherButton">Register Teacher</button>
+            <form id="student-form" style="display:none;" method="post" action="{{url_for('register', role='student')}}">
+                <table class="table">
+                <tr>
+                <td><label>Student Name</label></td>
+                <td><input type="text" name="name"></td>
+                </tr>
+                <tr>
+                <td><label>Semester</label></td>
+                <td><input type="number" name="semester"></td>
+                </tr>
+                <tr>
+                <td><label>Section</label></td>
+                <td><input type="text" name="section"></td>
+                </tr>
+                <tr>
+                <tr>
+                <td><label>Contact Number</label></td>
+                <td><input type="number" name="contact number"></td>
+                </tr>
+                <tr>
+                <td colspan="2" style="text-align: end;"><input type="submit"></td>
+                </tr>
+                </table>
+            </form>
+        </div>
+        <div class="con col-sm-12 col-lg-4 " id="student">
+            <button  type="button" class="btn btn-dark" onclick="showStudent()" id="studentButton">Register Student</button>
+            <form style="display:none;" id="teacher-form" method="post" action="{{url_for('register', role='teacher')}}">
+                <table class="table" id="table1">
+                <tr>
+                <td><label>Teacher Name</label></td>
+                <td><input type="text" name="name"></td>
+                </tr>
+                <tr>
+                <td><label>Semester</label></td>
+                <td><input type="number" name="semester"></td>
+                </tr>
+                <tr>
+                <td><label>Contact Number</label></td>
+                <td><input type="number" name="contact number"></td>
+                </tr>
+                <tr>
+
+                <tr>
+                <td><label>Section</label></td>
+                <td>
+                    <input type="radio" hspace="3" name='section' id ='A' value="A"><label>A</label>
+                    <input type="radio" name='section' id='B' value="B"><label>B</label>
+                    <input type="radio" name='section' id ='C' value="C"><label>C</label>
+                    <input type="radio" name='section' id='D' value="D"><label>D</label>
+
+                </td>
+                </tr>
+                <tr >
+                <td><label>Subjects</label></td>
+                <td>
+                    <input type="checkbox" name='subject'value="ML"> ML<br>
+                    <input type="checkbox" name='subject'value="Computer Networks"> Computer Networks<br>
+                    <input type="checkbox" name='subject'value="Compiler Design"> Compiler Design<br>
+                    <input type="checkbox" name='subject'value="Project Management"> Project Management<br>
+                </td>
+
+                </tr>
+
+                <tr>
+                <td colspan="2" style="text-align: end;"><input type="submit"></td>
+                </tr>
+                </table>
+            </form>
+        </div>
+
+</div>
+<script>
+    function showTeacher(){
+    let x = document.getElementById('teacher-form')
+    if (x.style.display == 'none'){
+    x.style.display = 'block';
+    document.getElementById('studentButton').style.display = 'none';
+    document.getElementById('student').style.height = 'auto';
+    document.getElementById('student').style.width = 'auto';}
+    else {
+    x.style.display = 'none';
+    document.getElementById('studentButton').style.display = 'block';
+    document.getElementById('student').style.height = '30%';
+    }
+    };
+    function showStudent(){
+    let y = document.getElementById('student-form')
+    if (y.style.display == 'none'){
+    y.style.display = 'block';
+    document.getElementById('teacherButton').style.display = 'none';
+    document.getElementById('teacher').style.height = 'auto';
+    document.getElementById('teacher').style.width = 'auto';}
+    else {
+    y.style.display = 'none';
+    document.getElementById('teacherButton').style.display = 'block';
+    document.getElementById('teacher').style.height = '30%';
+    }
+    };
+
+</script>
+</body>
+</html>
